@@ -51,7 +51,7 @@ class UserController extends Controller
 
         $user = new User;
         $user->phone_number = $request->input('phone_number');
-        $user->password = Crypt::encrypt($request->input('password'));
+        $user->password = app('hash')->make($request->input('password'));//Crypt::encrypt($request->input('password'));
         $user->save();
 
         $pattern = "/0[0-9]{10}/";
